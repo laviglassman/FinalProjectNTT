@@ -1,9 +1,9 @@
-FROM python:3.10
+FROM python:3
 MAINTAINER ur mom 
 WORKDIR /app
 COPY . /app
-RUN pip install -r requirements.txt
-RUN sudo apt update && sudo apt install -y postgresql
-RUN sudo systemctl start postgresql && sudo systemctl enable postgresql
+RUN sudo pip install -r requirements.txt
+RUN sudo apt update && sudo apt install postgresql postgresql-contrib redis-server -y
+RUN sudo systemctl start postgresql.service
 EXPOSE 5000
 CMD ["python", "manage.py"]
