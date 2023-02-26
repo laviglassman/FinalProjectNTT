@@ -15,7 +15,7 @@ RUN #apt-get update && \
     python -m venv /opt/status-page/venv && \
     python ./manage.py createsuperuser --no-input --username ubuntu1
 
-EXPORT 8000
+EXPOSE 8000
 
 #ENV DJANGO_SETTINGS_MODULE statuspage.settings
 
