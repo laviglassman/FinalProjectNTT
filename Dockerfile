@@ -1,18 +1,18 @@
 FROM python:3
 MAINTAINER ur mom 
 
-WORKDIR /opt/status-page/statuspage
+WORKDIR /opt/FinalProjectNTT/statuspage
 
 COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY manage.py /opt/status-page/statuspage/
-COPY settings.py /opt/status-page/statuspage/
+COPY manage.py /opt/FinalProjectNTT/statuspage/
+COPY settings.py /opt/FinalProjectNTT/statuspage/
 COPY . .
 
 RUN #apt-get update && \
     bash ./upgrade.sh && \
-    python -m venv /opt/status-page/venv && \
+    python -m venv /opt/FinalProjectNTT/venv && \
     python ./manage.py createsuperuser --no-input --username ubuntu1
 
 EXPOSE 8000
