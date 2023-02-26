@@ -1,13 +1,15 @@
-FROM python:3
+FROM python:3.10
+#AS builder
+
 MAINTAINER ur mom 
 
-WORKDIR ~/FinalProjectNTT/statuspage
+WORKDIR /app
 
 COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY ./manage.py ~/FinalProjectNTT/statuspage/
-COPY ./settings.py ~/FinalProjectNTT/statuspage/
+#COPY ./statuspage/manage.py /app
+#COPY ./statuspage/statuspage/settings.py /app
 COPY . .
 
 RUN #apt-get update && \
@@ -19,5 +21,6 @@ EXPOSE 8000
 
 #ENV DJANGO_SETTINGS_MODULE statuspage.settings
 
-#CMD ["python", "./manage.py", "runserver", "0.0.0.0:8000"]
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "statuspage.wsgi:application"]
+CMD ["python", "./statuspage/manage.py", "runserver", "0.0.0.0:8000"]
+#CMD ["gunicorn", "--bind", "0.0.0.0:8000", "statuspage.wsgi:application"]
+#ENTRYPOINT [ "/bin/bash" ]
