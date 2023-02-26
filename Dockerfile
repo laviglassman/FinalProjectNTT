@@ -1,9 +1,16 @@
-FROM python:3.10
+FROM python:3
 MAINTAINER ur mom 
-WORKDIR /app
-COPY . /app
-RUN sudo pip install -r requirements.txt
-RUN sudo apt update && sudo apt install postgresql postgresql-contrib redis-server -y
-RUN sudo systemctl start postgresql.service
-EXPOSE 5000
-CMD ["python", "manage.py"]
+
+ENV DJANGO_SUPERUSER_EMAIL=test@test.com
+ENV DJANGO_SUOERUSER_PASSWORD=testpass1234
+
+WORKDIR /opt/status-page
+
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+RUN bash ./upgrade.sh && python -m venv /opt/status-page/venv && python ./statuspage/manage.py createsuperuser --no-input --username test
+
+CMD ["python", "./statuspage/manage.py", "runserver", "0.0.0.0:8000", "--insecure"]
