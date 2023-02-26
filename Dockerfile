@@ -6,8 +6,8 @@ WORKDIR ~/FinalProjectNTT/statuspage
 COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY manage.py ~/FinalProjectNTT/statuspage/
-COPY settings.py ~/FinalProjectNTT/statuspage/
+COPY ./manage.py ~/FinalProjectNTT/statuspage/
+COPY ./settings.py ~/FinalProjectNTT/statuspage/
 COPY . .
 
 RUN #apt-get update && \
