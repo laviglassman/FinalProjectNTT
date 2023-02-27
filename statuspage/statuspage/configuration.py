@@ -11,11 +11,11 @@ ALLOWED_HOSTS = ['*']
 # PostgreSQL database configuration. See the Django documentation for a complete list of available parameters:
 #   https://docs.djangoproject.com/en/stable/ref/settings/#databases
 DATABASE = {
-    'NAME': 'status-page',         # Database name
-    'USER': 'marva',               # PostgreSQL username
-    'PASSWORD': 'marva',           # PostgreSQL password
-    'HOST': 'localhost',      # Database server
-    'PORT': '',               # Database port (leave blank for default)
+    'NAME': 'postgres',         # Database name
+    'USER': 'postgres',               # PostgreSQL username
+    'PASSWORD': 'Aa123456123456',           # PostgreSQL password
+    'HOST': 'postgres2test.cluster-ctgowt7evh1d.eu-central-1.rds.amazonaws.com',      # Database server
+    'PORT': '5432',               # Database port (leave blank for default)
     'CONN_MAX_AGE': 300,      # Max database connection age
 }
 
