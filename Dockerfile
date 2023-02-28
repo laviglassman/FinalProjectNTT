@@ -12,15 +12,15 @@ RUN pip install --no-cache-dir -r requirements.txt
 #COPY ./statuspage/statuspage/settings.py /app
 COPY . .
 
-RUN #apt-get update && \
+RUN apt-get update && \
     bash ./upgrade.sh && \
     python -m venv ~/FinalProjectNTT/venv && \
-    python ./manage.py createsuperuser --no-input --username ubuntu1
+    python ./statuspage/manage.py createsuperuser --no-input --username lavi --email lavi@example.com
 
 EXPOSE 8000
 
 #ENV DJANGO_SETTINGS_MODULE statuspage.settings
 
-CMD ["python", "./statuspage/manage.py", "runserver", "0.0.0.0:8000"]
-#CMD ["gunicorn", "--bind", "0.0.0.0:8000", "statuspage.wsgi:application"]
+#CMD ["python", "./statuspage/manage.py", "runserver", "127.0.0.1:8000", "--insecure"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "statuspage.wsgi:application"]
 #ENTRYPOINT [ "/bin/bash" ]
