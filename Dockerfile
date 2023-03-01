@@ -1,26 +1,29 @@
 FROM python:3.10
-#AS builder
+#AS builder?
 
-MAINTAINER ur mom 
+#MAINTAINER ur mom is probably a lovely woman, unlike this code
 
-WORKDIR /app
-
+WORKDIR /opt/status-page
+#install requirements
 COPY requirements.txt ./
-RUN pip install --no-cache-dir -r requirements.txt
+RUN apt-get update && \
+    apt-get install -y libxml2-dev libxslt1-dev libffi-dev libpq-dev libssl-dev zlib1g-dev && \
+    pip install --no-cache-dir -r requirements.txt
 
 #COPY ./statuspage/manage.py /app
 #COPY ./statuspage/statuspage/settings.py /app
+#copy the full directory
 COPY . .
-
-RUN #apt-get update && \
+#ENV VIRTUAL_ENV=./venv
+RUN apt-get update && \
     bash ./upgrade.sh && \
-    python -m venv ~/FinalProjectNTT/venv && \
-    python ./manage.py createsuperuser --no-input --username ubuntu1
-
-EXPOSE 8000
+    python3.10 -m venv ./venv 
+#ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+#ENV PYTHON=/usr/bin/python3.10
+EXPOSE 8000 5432 6379
 
 #ENV DJANGO_SETTINGS_MODULE statuspage.settings
-
-CMD ["python", "./statuspage/manage.py", "runserver", "0.0.0.0:8000"]
+#ENTRYPOINT [ "/usr/local/bin/python3" ]
+CMD ["python", "/opt/status-page/statuspage/manage.py", "runserver", "0.0.0.0:8000", "--insecure"]
 #CMD ["gunicorn", "--bind", "0.0.0.0:8000", "statuspage.wsgi:application"]
 #ENTRYPOINT [ "/bin/bash" ]
