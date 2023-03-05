@@ -17,7 +17,7 @@ RUN apt-get update && \
     python3.10 -m venv ../venv 
 #ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 #ENV PYTHON=/usr/bin/python3.10
-EXPOSE 8000 5432 6379
+EXPOSE 8000
 
 CMD ["gunicorn", "--bind", "0.0.0.0:8000", "statuspage.wsgi:application"]
 #ENTRYPOINT [ "/bin/bash" ]
