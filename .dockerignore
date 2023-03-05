@@ -5,7 +5,6 @@ __pycache__
 .Python
 .github
 contrib
-docs
 env
 pip-log.txt
 pip-delete-this-directory.txt
