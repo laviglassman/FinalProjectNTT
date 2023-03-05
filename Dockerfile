@@ -10,8 +10,7 @@ RUN apt-get update && \
     apt-get install -y libxml2-dev libxslt1-dev libffi-dev libpq-dev libssl-dev zlib1g-dev && \
     pip install --no-cache-dir -r requirements.txt
 
-#COPY ./statuspage/manage.py /app
-#COPY ./statuspage/statuspage/settings.py /app
+
 #copy the full directory
 COPY . .
 #ENV VIRTUAL_ENV=./venv
