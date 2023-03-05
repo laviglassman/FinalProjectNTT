@@ -14,11 +14,7 @@ DATABASE = {
     'NAME': 'postgres',         # Database name
     'USER': 'postgres',               # PostgreSQL username
     'PASSWORD': 'Aa123456123456',           # PostgreSQL password
-<<<<<<< HEAD
     'HOST': 'database-1.ctgowt7evh1d.eu-central-1.rds.amazonaws.com',      # Database server
-=======
-    'HOST': 'postgres2test.cluster-ctgowt7evh1d.eu-central-1.rds.amazonaws.com',      # Database server
->>>>>>> a3d7fc630ba2e269e34d15b4bab99163bfc354b5
     'PORT': '5432',               # Database port (leave blank for default)
     'CONN_MAX_AGE': 300,      # Max database connection age
 }
